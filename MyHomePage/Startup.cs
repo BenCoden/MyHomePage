@@ -8,8 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using MyHomePage.Shared;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using MyHomePage.Data;
+using MyHomePage.EntityFrameworkCoreSQL;
 
 namespace MyHomePage
 {
@@ -33,6 +35,9 @@ namespace MyHomePage
 
         private void GetDependencyServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(op =>//
+            op.UseSqlServer(Configuration.GetConnectionString("OneContext")));
+
             services.AddSingleton<IJsonReader<UserLinks>, JsonReader<UserLinks>>();
 
             services.AddSingleton<IJsonReader<SearchProvider>, JsonReader<SearchProvider>>();
@@ -52,7 +57,6 @@ namespace MyHomePage
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();

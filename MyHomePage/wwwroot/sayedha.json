@@ -1,7 +1,7 @@
 [
   {
     "Text": "UTF-8 Icons",
-    "ImageUrl": "/images/utf8-icons.png",
+    "ImageUrl": "https://www.utf8icons.com/images/icons/apple-touch-icon.png",
     "Url": "https://www.utf8icons.com/",
     "InvertImageColors": false,
     "BackgroundColor": null
