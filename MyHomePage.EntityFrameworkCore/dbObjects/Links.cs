@@ -2,9 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyHomePage.EntityFrameworkCoreSQL.Models
+namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
 {
-    public class Links
+    public interface ILinks
+    {
+        string BackgroundColor { get; set; }
+        string ImageUrl { get; set; }
+        bool InvertImageColors { get; set; }
+        string Text { get; set; }
+        string Url { get; set; }
+    }
+
+    public class Links : ILinks
     {
         public int Id { get; set; }
 

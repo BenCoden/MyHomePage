@@ -37,10 +37,10 @@ namespace MyHomePage
         {
             services.AddDbContext<AppDbContext>(op =>//
             op.UseSqlServer(Configuration.GetConnectionString("OneContext")));
+            services.AddScoped<ILinksRepo, LinksRepo>();
 
-            services.AddSingleton<IJsonReader<UserLinks>, JsonReader<UserLinks>>();
-
-            services.AddSingleton<IJsonReader<SearchProvider>, JsonReader<SearchProvider>>();
+            services.AddScoped<IMyLinks, MyLinks>();
+            services.AddScoped<IJsonReader<SearchProvider>, JsonReader<SearchProvider>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

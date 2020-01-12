@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyHomePage.EntityFrameworkCoreSQL.Models;
+using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;

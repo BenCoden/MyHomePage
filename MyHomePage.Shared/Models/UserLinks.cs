@@ -2,18 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MyHomePage.Shared
+namespace MyHomePage.Models
 {
-    public interface IUserLinks
-    {
-        string BackgroundColor { get; set; }
-        string ImageUrl { get; set; }
-        bool InvertImageColors { get; set; }
-        string Text { get; set; }
-        string Url { get; set; }
-    }
-
-    public class UserLinks : IUserLinks
+    public class UserLinks
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Text is required")]
         public string Text { get; set; }

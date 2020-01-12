@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyHomePage.EntityFrameworkCoreSQL.Models
+namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
 {
     public class SearchProviders
     {

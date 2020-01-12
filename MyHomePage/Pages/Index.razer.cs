@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
+using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
 using MyHomePage.Shared;
-using MyHomePage.ViewModel;
+using MyHomePage.Shared.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,7 @@ namespace MyHomePage.Pages
         public IWebHostEnvironment WebHostEnv { get; set; }
 
         [Inject]
-        public IJsonReader<UserLinks> UlReader { get; set; }
+        public IMyLinks MyLinks { get; set; }
 
         protected List<UserLinkViewModel> ULinks { get; set; }
 
@@ -25,19 +26,14 @@ namespace MyHomePage.Pages
             ULinks = await GetUserLinkViewModels();
         }
 
-        public async Task<List<UserLinks>> GetUserLinks()
-        {
-            var filepath = Path.Combine(WebHostEnv.WebRootPath, "sayedha.json");
-            return await UlReader.GetTypeFromFileAsync(filepath);
-        }
-
         private async Task<List<UserLinkViewModel>> GetUserLinkViewModels()
         {
-            var filepath = Path.Combine(WebHostEnv.WebRootPath, "sayedha.json");
-            var links = await UlReader.GetTypeFromFileAsync(filepath);
-
+            var links = await MyLinks.GetAllMyLinks();
             var result = new List<UserLinkViewModel>();
-            links.ForEach(ul => result.Add(new UserLinkViewModel { UserLink = ul }));
+            links.ForEach(ul =>
+            {
+                result.Add(new UserLinkViewModel { UserLink = ul });
+            });
             return result;
         }
 
@@ -57,7 +53,7 @@ namespace MyHomePage.Pages
             }
         }
 
-        protected bool IsMatch(IUserLinks userLink, string searchText)
+        protected bool IsMatch(ILinks userLink, string searchText)
         {
             var string2search = $"{userLink.Text};{userLink.ImageUrl};{userLink.Url}";
             return string2search.Contains(searchText, StringComparison.OrdinalIgnoreCase);
