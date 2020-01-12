@@ -13,8 +13,8 @@ namespace MyHomePage.EntityFrameworkCoreSQL
         {
         }
 
-        public DbSet<Links> Links { get; set; }
-        public DbSet<SearchProviders> SearchProviders { get; set; }
+        public DbSet<dboLinks> Links { get; set; }
+        public DbSet<dboSearchProviders> SearchProviders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using MyHomePage.Data;
 using MyHomePage.EntityFrameworkCoreSQL;
 
+using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
+
 namespace MyHomePage
 {
     public class Startup
@@ -37,7 +39,7 @@ namespace MyHomePage
         {
             services.AddDbContext<AppDbContext>(op =>//
             op.UseSqlServer(Configuration.GetConnectionString("OneContext")));
-            services.AddScoped<ILinksRepo, LinksRepo>();
+            services.AddScoped<ITRepo<dboLinks>, TRepo<dboLinks>>();
 
             services.AddScoped<IMyLinks, MyLinks>();
             services.AddScoped<IJsonReader<SearchProvider>, JsonReader<SearchProvider>>();

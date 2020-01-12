@@ -4,7 +4,15 @@ using System.Text;
 
 namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
 {
-    public class SearchProviders
+    public interface IdboSearchProviders
+    {
+        string DisplayName { get; set; }
+        int Id { get; set; }
+        bool IsDefault { get; set; }
+        string SearchUrl { get; set; }
+    }
+
+    public class dboSearchProviders : IdboSearchProviders
     {
         public int Id { get; set; }
 

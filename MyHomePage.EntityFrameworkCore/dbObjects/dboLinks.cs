@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
 {
-    public interface ILinks
+    public interface IdboLinks
     {
         string BackgroundColor { get; set; }
         string ImageUrl { get; set; }
@@ -13,7 +13,7 @@ namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
         string Url { get; set; }
     }
 
-    public class Links : ILinks
+    public class dboLinks : IdboLinks
     {
         public int Id { get; set; }
 

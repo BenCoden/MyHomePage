@@ -1,35 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MyHomePage.EntityFrameworkCoreSQL
 {
-    public interface ILinksRepo
+    public interface ITRepo<T> where T : class
     {
-        void AddLinks(Links newLink);
+        void AddLinks(T newLink);
 
-        Task<List<Links>> GetLinks();
+        Task<List<T>> GetLinks();
     }
 
-    public class LinksRepo : ILinksRepo
+    public class TRepo<T> : ITRepo<T> where T : class
     {
         private readonly AppDbContext _context;
 
-        public LinksRepo(AppDbContext context)
+        public TRepo(AppDbContext context)
         {
             _context = context;
         }
 
-        public Task<List<Links>> GetLinks()
+        public Task<List<T>> GetLinks()
         {
-            return _context.Links.ToListAsync();
+            return _context.Set<T>().ToListAsync();
         }
 
-        public void AddLinks(Links newLink)
+        public void AddLinks(T newLink)
         {
             try
             {

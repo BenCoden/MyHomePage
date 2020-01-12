@@ -9,21 +9,21 @@ namespace MyHomePage.Shared
 {
     public interface IMyLinks
     {
-        Task<List<Links>> GetAllMyLinks();
+        Task<List<dboLinks>> GetAllMyLinks();
     }
 
     public class MyLinks : IMyLinks
     {
-        private readonly ILinksRepo _linksRepo;
+        private readonly ITRepo<dboLinks> _linksRepo;
 
-        public MyLinks(ILinksRepo linkRepo)
+        public MyLinks(ITRepo<dboLinks> linkRepo)
         {
             _linksRepo = linkRepo;
         }
 
-        public async Task<List<Links>> GetAllMyLinks()
+        public async Task<List<dboLinks>> GetAllMyLinks()
         {
-            var result = new List<Links>();
+            var result = new List<dboLinks>();
             result = await _linksRepo.GetLinks();
             return result;
         }

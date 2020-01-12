@@ -53,7 +53,7 @@ namespace MyHomePage.Pages
             }
         }
 
-        protected bool IsMatch(ILinks userLink, string searchText)
+        protected bool IsMatch(IdboLinks userLink, string searchText)
         {
             var string2search = $"{userLink.Text};{userLink.ImageUrl};{userLink.Url}";
             return string2search.Contains(searchText, StringComparison.OrdinalIgnoreCase);
