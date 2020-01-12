@@ -13,6 +13,20 @@
         <input @bind="UserLink.UserLink.Url" type="text" class="form-control" id="last-name" placeholder="@UserLink.UserLink.Url" />
     </div>
 
+    <div class="form-group">
+        <label>BackgroundColor</label>
+        <input @bind="UserLink.UserLink.BackgroundColor" type="color" class="form-control" id="background-color" placeholder="@UserLink.UserLink.BackgroundColor" />
+    </div>
+    <div class="form-group">
+        <label>Image Uri</label>
+        <input @bind="UserLink.UserLink.ImageUrl" type="image" class="form-control" id="image-uri" placeholder="@UserLink.UserLink.ImageUrl" />
+    </div>
+
+    <div class="form-group">
+        <label>InvertImage Colors</label>
+        <input @bind="UserLink.UserLink.InvertImageColors" type="checkbox" class="form-control" id="invertImage-colors" placeholder="@UserLink.UserLink.InvertImageColors" />
+    </div>
+
     <button @onclick="Ok_Clicked" class="btn btn-primary">Submit</button>
     <button @onclick="Cancel_Clicked" class="btn btn-secondary">Cancel</button>
 </div>

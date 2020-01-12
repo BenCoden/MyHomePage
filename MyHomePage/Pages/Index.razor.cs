@@ -26,6 +26,17 @@ namespace MyHomePage.Pages
             ULinks = await GetUserLinkViewModels();
         }
 
+        public void UpdateLinksUI(UserLinkViewModel newLink, EventArgs args)
+        {
+            foreach (var item in ULinks)
+            {
+                if (item.UserLink.Id == newLink.UserLink.Id)
+                {
+                    item.UserLink = newLink.UserLink;
+                }
+            }
+        }
+
         private async Task<List<UserLinkViewModel>> GetUserLinkViewModels()
         {
             var links = MyLinks.GetAllMyLinks();
