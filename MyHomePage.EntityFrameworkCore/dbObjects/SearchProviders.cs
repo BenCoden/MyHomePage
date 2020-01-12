@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
 {
-    public interface IdboSearchProviders
+    public interface ISearchProviders
     {
         string DisplayName { get; set; }
         int Id { get; set; }
@@ -12,7 +12,7 @@ namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
         string SearchUrl { get; set; }
     }
 
-    public class dboSearchProviders : IdboSearchProviders
+    public class dboSearchProviders : ISearchProviders
     {
         public int Id { get; set; }
 

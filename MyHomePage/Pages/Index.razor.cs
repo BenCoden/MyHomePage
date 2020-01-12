@@ -28,7 +28,7 @@ namespace MyHomePage.Pages
 
         private async Task<List<UserLinkViewModel>> GetUserLinkViewModels()
         {
-            var links = await MyLinks.GetAllMyLinks();
+            var links = MyLinks.GetAllMyLinks();
             var result = new List<UserLinkViewModel>();
             links.ForEach(ul =>
             {
@@ -53,7 +53,7 @@ namespace MyHomePage.Pages
             }
         }
 
-        protected bool IsMatch(IdboLinks userLink, string searchText)
+        protected bool IsMatch(ILinks userLink, string searchText)
         {
             var string2search = $"{userLink.Text};{userLink.ImageUrl};{userLink.Url}";
             return string2search.Contains(searchText, StringComparison.OrdinalIgnoreCase);

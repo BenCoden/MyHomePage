@@ -11,7 +11,7 @@ namespace MyHomePage.Shared.ViewModel
     [DebuggerDisplay("{UserLink.Text} - {UserLink.Url}")]
     public class UserLinkViewModel
     {
-        public IdboLinks UserLink { get; set; }
+        public ILinks UserLink { get; set; }
         public bool Hidden { get; set; }
     }
 }

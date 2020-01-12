@@ -41,8 +41,11 @@ namespace MyHomePage
             op.UseSqlServer(Configuration.GetConnectionString("OneContext")));
             services.AddScoped<ITRepo<dboLinks>, TRepo<dboLinks>>();
 
+            services.AddScoped<ITRepo<dboSearchProviders>, TRepo<dboSearchProviders>>();
+
             services.AddScoped<IMyLinks, MyLinks>();
             services.AddScoped<IJsonReader<SearchProvider>, JsonReader<SearchProvider>>();
+            services.AddScoped<IMySearchProvider, MySearchProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

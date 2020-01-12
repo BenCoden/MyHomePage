@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.JSInterop;
+using MyHomePage.EntityFrameworkCoreSQL;
+using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
 using MyHomePage.Shared;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,9 @@ namespace MyHomePage.Components
         public NavigationManager NavManager { get; set; }
 
         [Inject]
+        public IMySearchProvider _searchProvider { get; set; }
+
+        [Inject]
         public IJsonReader<SearchProvider> SearchReader { get; set; }
 
         [Inject]
@@ -25,14 +30,15 @@ namespace MyHomePage.Components
 
         public string SearchText { get; set; }
         public string SearchFormatUrl { get; set; }
-        public List<SearchProvider> SearchProviders { get; set; }
+        public List<dboSearchProviders> SearchProviders { get; set; }
 
         [Parameter]
         public EventCallback<ChangeEventArgs> OnFilter { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
-            SearchProviders = await GetSearchProvidersAsync();
+            SearchProviders = _searchProvider.GetSearchProviders();
+
             SearchFormatUrl = SearchProviders[0].SearchUrl;
         }
 
@@ -130,13 +136,6 @@ namespace MyHomePage.Components
             }
 
             return currentIndex;
-        }
-
-        private async Task<List<SearchProvider>> GetSearchProvidersAsync()
-        {
-            // TODO: get from some service
-            string filepath = System.IO.Path.Combine(WebHostEnv.WebRootPath, "search.json");
-            return await SearchReader.GetTypeFromFileAsync(filepath);
         }
     }
 }

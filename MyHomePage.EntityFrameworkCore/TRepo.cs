@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace MyHomePage.EntityFrameworkCoreSQL
     {
         void AddLinks(T newLink);
 
-        Task<List<T>> GetLinks();
+        List<T> GetLinks();
     }
 
     public class TRepo<T> : ITRepo<T> where T : class
@@ -22,9 +23,9 @@ namespace MyHomePage.EntityFrameworkCoreSQL
             _context = context;
         }
 
-        public Task<List<T>> GetLinks()
+        public List<T> GetLinks()
         {
-            return _context.Set<T>().ToListAsync();
+            return _context.Set<T>().ToList();
         }
 
         public void AddLinks(T newLink)

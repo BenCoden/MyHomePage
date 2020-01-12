@@ -9,7 +9,7 @@ namespace MyHomePage.Shared
 {
     public interface IMyLinks
     {
-        Task<List<dboLinks>> GetAllMyLinks();
+        List<dboLinks> GetAllMyLinks();
     }
 
     public class MyLinks : IMyLinks
@@ -21,10 +21,10 @@ namespace MyHomePage.Shared
             _linksRepo = linkRepo;
         }
 
-        public async Task<List<dboLinks>> GetAllMyLinks()
+        public List<dboLinks> GetAllMyLinks()
         {
             var result = new List<dboLinks>();
-            result = await _linksRepo.GetLinks();
+            result = _linksRepo.GetLinks();
             return result;
         }
     }
