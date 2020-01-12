@@ -1,0 +1,25 @@
+﻿@inherits LinkBase
+
+<div class="userlink-container" hidden="@(UserLinkVM.Hidden)">
+    <ContextMenuTrigger MenuId="triggerMenu" MouseButtonTrigger="MouseButtonTrigger.Both">
+        <a class="userlink" href="@UserLinkVM.UserLink.Url" target="_blank">
+            <div class="@GetImageClassString()">
+                @if (string.IsNullOrWhiteSpace(UserLinkVM.UserLink.BackgroundColor))
+                {
+                    <img src="@UserLinkVM.UserLink.ImageUrl"
+                         alt="@UserLinkVM.UserLink.ImageUrl" />
+                }
+                else
+                {
+                    <img src="@UserLinkVM.UserLink.ImageUrl"
+                         alt="@UserLinkVM.UserLink.ImageUrl"
+                         style="background-color:@(UserLinkVM.UserLink.BackgroundColor)" />
+                }
+            </div>
+            <div class="userlink-text">@UserLinkVM.UserLink.Text</div>
+        </a>
+    </ContextMenuTrigger>
+    <div class="btn-group">
+    </div>
+    <Menu />
+</div>

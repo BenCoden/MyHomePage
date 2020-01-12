@@ -23,9 +23,6 @@ namespace MyHomePage.Components
         public IMySearchProvider _searchProvider { get; set; }
 
         [Inject]
-        public IJsonReader<SearchProvider> SearchReader { get; set; }
-
-        [Inject]
         public IWebHostEnvironment WebHostEnv { get; set; }
 
         public string SearchText { get; set; }

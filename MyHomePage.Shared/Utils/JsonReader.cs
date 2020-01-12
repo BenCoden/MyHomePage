@@ -6,7 +6,8 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyHomePage.Shared
+namespace MyHomePage.Shared.Utils
+
 {
     public interface IJsonReader<T>
     {

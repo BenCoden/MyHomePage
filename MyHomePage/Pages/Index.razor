@@ -6,8 +6,9 @@
 Welcome to your HomePage.
 
 <Search OnFilter="DoFilter" />
-
-@if (ULinks != null && ULinks.Count > 0)
+<AddLink />
+@if (ULinks != null && ULinks.Count>
+0)
 {
     @foreach (var ul in ULinks)
     {

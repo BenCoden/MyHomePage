@@ -36,15 +36,16 @@ namespace MyHomePage
         }
 
         private void GetDependencyServices(IServiceCollection services)
-        {
+        {//ui
+            services.AddBlazorContextMenu();
+
+            //db
             services.AddDbContext<AppDbContext>(op =>//
             op.UseSqlServer(Configuration.GetConnectionString("OneContext")));
             services.AddScoped<ITRepo<dboLinks>, TRepo<dboLinks>>();
-
             services.AddScoped<ITRepo<dboSearchProviders>, TRepo<dboSearchProviders>>();
-
+            //logic
             services.AddScoped<IMyLinks, MyLinks>();
-            services.AddScoped<IJsonReader<SearchProvider>, JsonReader<SearchProvider>>();
             services.AddScoped<IMySearchProvider, MySearchProvider>();
         }
 

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomePage", "MyHomePage\My
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomePage.Shared", "MyHomePage.Shared\MyHomePage.Shared.csproj", "{697218AE-802B-4AF1-A659-1352BDD82DE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyHomePage.EntityFrameworkCoreSQL", "MyHomePage.EntityFrameworkCore\MyHomePage.EntityFrameworkCoreSQL.csproj", "{53169A42-F305-49DF-BD4E-DAC637BD5B65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyHomePage.EntityFrameworkCoreSQL", "MyHomePage.EntityFrameworkCore\MyHomePage.EntityFrameworkCoreSQL.csproj", "{53169A42-F305-49DF-BD4E-DAC637BD5B65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
