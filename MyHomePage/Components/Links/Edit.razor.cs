@@ -1,5 +1,6 @@
 ﻿using Blazor.ModalDialog;
 using Microsoft.AspNetCore.Components;
+using MyHomePage.Shared;
 using MyHomePage.Shared.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,9 @@ namespace MyHomePage.Components.Links
 
         [Inject]
         public IModalDialogService ModalDialogService { get; set; }
+
+        [Inject]
+        public IMyLinks _myLoicks { get; set; }
 
         public UserLinkViewModel UserLink { get; set; }
 
@@ -36,6 +40,7 @@ namespace MyHomePage.Components.Links
                 else
                 {
                     ModalDialogParameters resultParameters = new ModalDialogParameters();
+                    _myLoicks.UpdateLink(UserLink);
                     resultParameters.Set("Link", UserLink);
                     ModalDialogService.Close(true, resultParameters);
                 }

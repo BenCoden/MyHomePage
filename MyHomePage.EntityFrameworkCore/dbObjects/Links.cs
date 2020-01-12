@@ -11,6 +11,7 @@ namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
         bool InvertImageColors { get; set; }
         string Text { get; set; }
         string Url { get; set; }
+        int Id { get; }
     }
 
     public class dboLinks : ILinks

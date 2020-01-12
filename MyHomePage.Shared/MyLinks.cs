@@ -1,5 +1,6 @@
 ﻿using MyHomePage.EntityFrameworkCoreSQL;
 using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
+using MyHomePage.Shared.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,8 @@ namespace MyHomePage.Shared
     public interface IMyLinks
     {
         List<dboLinks> GetAllMyLinks();
+
+        void UpdateLink(UserLinkViewModel userLink);
     }
 
     public class MyLinks : IMyLinks
@@ -26,6 +29,11 @@ namespace MyHomePage.Shared
             var result = new List<dboLinks>();
             result = _linksRepo.GetLinks();
             return result;
+        }
+
+        public void UpdateLink(UserLinkViewModel userLink)
+        {
+            _linksRepo.UpdateLink((dboLinks)userLink.UserLink);
         }
     }
 }

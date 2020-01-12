@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,11 @@ namespace MyHomePage.EntityFrameworkCoreSQL
 {
     public interface ITRepo<T> where T : class
     {
-        void AddLinks(T newLink);
+        void AddLinks(T arg);
 
         List<T> GetLinks();
+
+        void UpdateLink(T arg);
     }
 
     public class TRepo<T> : ITRepo<T> where T : class
@@ -28,11 +31,25 @@ namespace MyHomePage.EntityFrameworkCoreSQL
             return _context.Set<T>().ToList();
         }
 
-        public void AddLinks(T newLink)
+        public void AddLinks(T arg)
         {
             try
             {
-                _context.Add(newLink);
+                _context.Add(arg);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                var localE = e;
+                throw;
+            }
+        }
+
+        public void UpdateLink(T arg)
+        {
+            try
+            {
+                _context.Update(arg);
                 _context.SaveChanges();
             }
             catch (Exception e)
