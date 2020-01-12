@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blazor.ContextMenu" Version="1.6.0" />
+    <PackageReference Include="LiquidTechnologies.Blazor.ModalDialog" Version="0.9.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

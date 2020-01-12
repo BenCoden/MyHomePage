@@ -14,6 +14,7 @@ using MyHomePage.Data;
 using MyHomePage.EntityFrameworkCoreSQL;
 
 using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
+using Blazor.ModalDialog;
 
 namespace MyHomePage
 {
@@ -38,6 +39,7 @@ namespace MyHomePage
         private void GetDependencyServices(IServiceCollection services)
         {//ui
             services.AddBlazorContextMenu();
+            services.AddModalDialog();
 
             //db
             services.AddDbContext<AppDbContext>(op =>//
