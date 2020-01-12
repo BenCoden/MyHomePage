@@ -17,6 +17,9 @@ namespace MyHomePage.Components.Links
         [Inject]
         public IModalDialogService ModalDialog { get; set; }
 
+        [Parameter]
+        public EventCallback<ChangeEventArgs> OnUpdate { get; set; }
+
         public UserLinkViewModel UserLinkVM { get; set; }
 
         public void OnClick(ItemClickEventArgs e)
@@ -33,8 +36,25 @@ namespace MyHomePage.Components.Links
             parameters.Add("Link", e.Data as UserLinkViewModel);
             ModalDialogResult result = await ModalDialog.ShowDialogAsync<Edit>("Edit Form", null, parameters);
             if (result.Success)
+            {
                 UserLinkVM = result.ReturnParameters.Get<UserLinkViewModel>("Link");
+                await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = UserLinkVM });
+            }
+            StateHasChanged();
+        }
 
+        public async void OnSearchMark(ItemClickEventArgs e)
+        {
+            StateHasChanged();
+
+            var parameters = new ModalDialogParameters();
+            parameters.Add("Link", e.Data as UserLinkViewModel);
+            ModalDialogResult result = await ModalDialog.ShowDialogAsync<Edit>("Edit Form", null, parameters);
+            if (result.Success)
+            {
+                UserLinkVM = result.ReturnParameters.Get<UserLinkViewModel>("Link");
+                await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = UserLinkVM });
+            }
             StateHasChanged();
         }
     }

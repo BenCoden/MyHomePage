@@ -12,6 +12,6 @@ Welcome to your HomePage.
 {
     @foreach (var ul in ULinks)
     {
-        <Link UserLinkVM="@ul" />
+        <Link LinkUpdate="UpdateLinksUI" UserLinkVM="@ul" />
     }
 }

@@ -14,6 +14,11 @@ namespace MyHomePage.Components.Links
         [Parameter]
         public UserLinkViewModel UserLinkVM { get; set; }
 
+        [Parameter]
+        public EventCallback<ChangeEventArgs> LinkUpdate { get; set; }
+
+        //OnUpdate.InvokeAsync(new ChangeEventArgs { Value = UserLinkVM });
+
         public string GetImageClassString()
         {
             var classstr = "userlink-image";
@@ -22,6 +27,16 @@ namespace MyHomePage.Components.Links
                 classstr += " invert";
             }
             return classstr;
+        }
+
+        protected override void OnAfterRender(bool firstRender)
+        {
+            base.OnAfterRender(firstRender);
+        }
+
+        protected override bool ShouldRender()
+        {
+            return base.ShouldRender();
         }
     }
 }

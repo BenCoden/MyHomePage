@@ -26,13 +26,14 @@ namespace MyHomePage.Pages
             ULinks = await GetUserLinkViewModels();
         }
 
-        public void UpdateLinksUI(UserLinkViewModel newLink, EventArgs args)
+        public void UpdateLinksUI(ChangeEventArgs args)
         {
+            var temp = args.Value as UserLinkViewModel;
             foreach (var item in ULinks)
             {
-                if (item.UserLink.Id == newLink.UserLink.Id)
+                if (item.UserLink.Id == temp.UserLink.Id)
                 {
-                    item.UserLink = newLink.UserLink;
+                    item.UserLink = temp.UserLink;
                 }
             }
         }
