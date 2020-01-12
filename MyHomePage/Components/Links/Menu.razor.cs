@@ -8,6 +8,7 @@ using Blazor.ModalDialog.Components;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+using MyHomePage.Shared.ViewModel;
 
 namespace MyHomePage.Components.Links
 {
@@ -16,7 +17,7 @@ namespace MyHomePage.Components.Links
         [Inject]
         public IModalDialogService ModalDialog { get; set; }
 
-        public string Message { get; set; }
+        public UserLinkViewModel UserLinkVM { get; set; }
 
         public void OnClick(ItemClickEventArgs e)
         {
@@ -26,16 +27,14 @@ namespace MyHomePage.Components.Links
 
         public async void OnClickEdit(ItemClickEventArgs e)
         {
-            Message = "Requesting Data From User";
             StateHasChanged();
 
             var parameters = new ModalDialogParameters();
-            parameters.Add("FormId", 11);
+            parameters.Add("Link", e.Data as UserLinkViewModel);
             ModalDialogResult result = await ModalDialog.ShowDialogAsync<Edit>("Edit Form", null, parameters);
             if (result.Success)
-                Message = "User Provided the value : " + result.ReturnParameters.Get<string>("FullName");
-            else
-                Message = "User Cancelled";
+                UserLinkVM = result.ReturnParameters.Get<UserLinkViewModel>("Link");
+
             StateHasChanged();
         }
     }
