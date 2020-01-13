@@ -28,6 +28,7 @@ namespace MyHomePage.Shared
         {
             var result = new List<DboLinks>();
             result = _linksRepo.GetLinks();
+            result = result.FindAll(find => find.IsActive);
             return result;
         }
 

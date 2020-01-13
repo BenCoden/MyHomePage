@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using MyHomePage.Shared.ViewModel;
+using MyHomePage.Shared;
 
 namespace MyHomePage.Components.Links
 {
@@ -46,12 +47,42 @@ namespace MyHomePage.Components.Links
         public async void OnSearchMark(ItemClickEventArgs e)
         {
             StateHasChanged();
-            var link = e.Data as UserLinkViewModel;
-            if (link.UserLink.CanSearchSite)
+            UserLinkVM = e.Data as UserLinkViewModel;
+            if (UserLinkVM.UserLink.CanSearchSite)
             {
-                link.IsTheSearchSite = !(link.IsTheSearchSite);
-                await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = link });
+                UserLinkVM.IsTheSearchSite = !(UserLinkVM.IsTheSearchSite);
+                await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = UserLinkVM });
             }
+
+            StateHasChanged();
+        }
+
+        public async void OnDelete(ItemClickEventArgs e)
+        {
+            StateHasChanged();
+            UserLinkVM = e.Data as UserLinkViewModel;
+
+            UserLinkVM.UserLink.IsActive = !(UserLinkVM.UserLink.IsActive);
+            await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = UserLinkVM });
+
+            StateHasChanged();
+        }
+
+        public async void OnPin(ItemClickEventArgs e)
+        {//set new pin to 99, Not Pin to -1
+            StateHasChanged();
+            UserLinkVM = e.Data as UserLinkViewModel;
+
+            if (UserLinkVM.UserLink.Pined > 0)
+            {
+                UserLinkVM.UserLink.Pined = -1;
+            }
+            else
+            {
+                UserLinkVM.UserLink.Pined = 99;
+            }
+
+            await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = UserLinkVM });
 
             StateHasChanged();
         }

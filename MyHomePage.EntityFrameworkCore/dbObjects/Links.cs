@@ -12,7 +12,7 @@ namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
         string ImageUrl { get; set; }
         bool InvertImageColors { get; set; }
         bool IsActive { get; set; }
-        bool IsPined { get; set; }
+        int Pined { get; set; }
         string Text { get; set; }
         string Url { get; set; }
     }
@@ -20,7 +20,7 @@ namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
     public class DboLinks : ILinks
     {
         public bool IsActive { get; set; }
-        public bool IsPined { get; set; }
+        public int Pined { get; set; }
         public bool CanSearchSite { get; set; }
         public int Id { get; set; }
 

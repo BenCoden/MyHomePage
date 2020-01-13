@@ -18,19 +18,20 @@ namespace MyHomePage.Pages
         public IWebHostEnvironment WebHostEnv { get; set; }
 
         [Inject]
-        public IMyLinks MyLinks { get; set; }
+        public IMyLinks _myLinks { get; set; }
 
         protected List<UserLinkViewModel> ULinks { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             ULinks = await GetUserLinkViewModels();
+            ULinks = ULinks.OrderByDescending(ob => ob.UserLink.Pined).ToList();
         }
 
         public void UpdateLinksUI(ChangeEventArgs args)
         {
             var newLink = args.Value as UserLinkViewModel;
-            Debug.Assert(newLink == null);
+            Debug.Assert(newLink != null);
 
             foreach (var oldLink in ULinks)
             {
@@ -43,15 +44,27 @@ namespace MyHomePage.Pages
                         //Set all old links to false
                         ULinks.ForEach(item => item.IsTheSearchSite = false);
                     }
+                    if (newLink.UserLink.IsActive == false)
+                    {
+                        oldLink.Hidden = true;
+                    }
+
+                    if (newLink.UserLink.Pined > 0)
+                    {
+                        newLink.UserLink.Pined = ULinks.Where(w => w.UserLink.Pined > 0).Count() + 1;
+                    }
 
                     oldLink.UserLink = newLink.UserLink;
+                    _myLinks.UpdateLink(newLink);
+                    break;
                 }
             }
+            ULinks = ULinks.OrderByDescending(ob => ob.UserLink.Pined).ToList();
         }
 
         private async Task<List<UserLinkViewModel>> GetUserLinkViewModels()
         {
-            var links = MyLinks.GetAllMyLinks();
+            var links = _myLinks.GetAllMyLinks();
             var result = new List<UserLinkViewModel>();
             links.ForEach(ul =>
             {
@@ -74,6 +87,7 @@ namespace MyHomePage.Pages
             {
                 ULinks.ForEach(ul => ul.Hidden = !IsMatch(ul.UserLink, searchText));
             }
+            ULinks = ULinks.OrderByDescending(ob => ob.UserLink.Pined).ToList();
         }
 
         protected bool IsMatch(ILinks userLink, string searchText)
