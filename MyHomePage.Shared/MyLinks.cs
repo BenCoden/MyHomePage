@@ -10,30 +10,30 @@ namespace MyHomePage.Shared
 {
     public interface IMyLinks
     {
-        List<dboLinks> GetAllMyLinks();
+        List<DboLinks> GetAllMyLinks();
 
         void UpdateLink(UserLinkViewModel userLink);
     }
 
     public class MyLinks : IMyLinks
     {
-        private readonly ITRepo<dboLinks> _linksRepo;
+        private readonly ITRepo<DboLinks> _linksRepo;
 
-        public MyLinks(ITRepo<dboLinks> linkRepo)
+        public MyLinks(ITRepo<DboLinks> linkRepo)
         {
             _linksRepo = linkRepo;
         }
 
-        public List<dboLinks> GetAllMyLinks()
+        public List<DboLinks> GetAllMyLinks()
         {
-            var result = new List<dboLinks>();
+            var result = new List<DboLinks>();
             result = _linksRepo.GetLinks();
             return result;
         }
 
         public void UpdateLink(UserLinkViewModel userLink)
         {
-            _linksRepo.UpdateLink((dboLinks)userLink.UserLink);
+            _linksRepo.UpdateLink((DboLinks)userLink.UserLink);
         }
     }
 }

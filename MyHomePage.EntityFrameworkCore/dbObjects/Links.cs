@@ -7,17 +7,19 @@ namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
     public interface ILinks
     {
         string BackgroundColor { get; set; }
+        bool CanSearchSite { get; set; }
+        int Id { get; set; }
         string ImageUrl { get; set; }
         bool InvertImageColors { get; set; }
+        bool IsActive { get; set; }
+        bool IsPined { get; set; }
         string Text { get; set; }
         string Url { get; set; }
-        int Id { get; }
     }
 
-    public class dboLinks : ILinks
+    public class DboLinks : ILinks
     {
         public bool IsActive { get; set; }
-        public bool IsTheSearchSite { get; set; }
         public bool IsPined { get; set; }
         public bool CanSearchSite { get; set; }
         public int Id { get; set; }

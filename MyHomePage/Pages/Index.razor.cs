@@ -5,6 +5,7 @@ using MyHomePage.Shared;
 using MyHomePage.Shared.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,12 +29,22 @@ namespace MyHomePage.Pages
 
         public void UpdateLinksUI(ChangeEventArgs args)
         {
-            var temp = args.Value as UserLinkViewModel;
-            foreach (var item in ULinks)
+            var newLink = args.Value as UserLinkViewModel;
+            Debug.Assert(newLink == null);
+
+            foreach (var oldLink in ULinks)
             {
-                if (item.UserLink.Id == temp.UserLink.Id)
+                if (oldLink.UserLink.Id == newLink.UserLink.Id)
                 {
-                    item.UserLink = temp.UserLink;
+                    if (newLink.IsTheSearchSite == true
+                        && oldLink.IsTheSearchSite == false
+                        && newLink.UserLink.CanSearchSite == true)
+                    {//There can only be one search Site
+                        //Set all old links to false
+                        ULinks.ForEach(item => item.IsTheSearchSite = false);
+                    }
+
+                    oldLink.UserLink = newLink.UserLink;
                 }
             }
         }

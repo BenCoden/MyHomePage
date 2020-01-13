@@ -48,7 +48,7 @@ namespace MyHomePage
                     );
             });
 
-            services.AddScoped<ITRepo<dboLinks>, TRepo<dboLinks>>();
+            services.AddScoped<ITRepo<DboLinks>, TRepo<DboLinks>>();
             services.AddScoped<ITRepo<dboSearchProviders>, TRepo<dboSearchProviders>>();
             //logic
             services.AddScoped<IMyLinks, MyLinks>();

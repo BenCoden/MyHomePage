@@ -13,5 +13,7 @@ namespace MyHomePage.Shared.ViewModel
     {
         public ILinks UserLink { get; set; }
         public bool Hidden { get; set; }
+
+        public bool IsTheSearchSite { get; set; }
     }
 }

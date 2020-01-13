@@ -13,7 +13,7 @@ namespace MyHomePage.EntityFrameworkCoreSQL
         {
         }
 
-        public DbSet<dboLinks> Links { get; set; }
+        public DbSet<DboLinks> Links { get; set; }
         public DbSet<dboSearchProviders> SearchProviders { get; set; }
     }
 }

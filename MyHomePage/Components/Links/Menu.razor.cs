@@ -46,15 +46,13 @@ namespace MyHomePage.Components.Links
         public async void OnSearchMark(ItemClickEventArgs e)
         {
             StateHasChanged();
-
-            var parameters = new ModalDialogParameters();
-            parameters.Add("Link", e.Data as UserLinkViewModel);
-            ModalDialogResult result = await ModalDialog.ShowDialogAsync<Edit>("Edit Form", null, parameters);
-            if (result.Success)
+            var link = e.Data as UserLinkViewModel;
+            if (link.UserLink.CanSearchSite)
             {
-                UserLinkVM = result.ReturnParameters.Get<UserLinkViewModel>("Link");
-                await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = UserLinkVM });
+                link.IsTheSearchSite = !(link.IsTheSearchSite);
+                await OnUpdate.InvokeAsync(new ChangeEventArgs { Value = link });
             }
+
             StateHasChanged();
         }
     }
