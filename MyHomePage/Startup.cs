@@ -42,8 +42,12 @@ namespace MyHomePage
             services.AddModalDialog();
 
             //db
-            services.AddDbContext<AppDbContext>(op =>//
-            op.UseSqlServer(Configuration.GetConnectionString("OneContext")));
+            services.AddDbContext<AppDbContext>(op =>
+            {
+                op.UseSqlServer(Configuration.GetConnectionString("OneContext")
+                    );
+            });
+
             services.AddScoped<ITRepo<dboLinks>, TRepo<dboLinks>>();
             services.AddScoped<ITRepo<dboSearchProviders>, TRepo<dboSearchProviders>>();
             //logic

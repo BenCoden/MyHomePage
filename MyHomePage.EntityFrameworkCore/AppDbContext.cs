@@ -15,10 +15,5 @@ namespace MyHomePage.EntityFrameworkCoreSQL
 
         public DbSet<dboLinks> Links { get; set; }
         public DbSet<dboSearchProviders> SearchProviders { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
     }
 }

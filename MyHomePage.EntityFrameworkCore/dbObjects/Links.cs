@@ -16,6 +16,10 @@ namespace MyHomePage.EntityFrameworkCoreSQL.dbObjects
 
     public class dboLinks : ILinks
     {
+        public bool IsActive { get; set; }
+        public bool IsTheSearchSite { get; set; }
+        public bool IsPined { get; set; }
+        public bool CanSearchSite { get; set; }
         public int Id { get; set; }
 
         public string Text { get; set; }

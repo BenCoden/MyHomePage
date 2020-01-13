@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyHomePage.EntityFrameworkCoreSQL;
 
-namespace MyHomePage.EntityFrameworkCoreSQL.Migrations
+namespace MyHomePage.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
