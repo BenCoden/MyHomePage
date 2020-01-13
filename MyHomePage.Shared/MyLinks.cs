@@ -13,6 +13,8 @@ namespace MyHomePage.Shared
         List<DboLinks> GetAllMyLinks();
 
         void UpdateLink(UserLinkViewModel userLink);
+
+        void AddLink(UserLinkViewModel newLink);
     }
 
     public class MyLinks : IMyLinks
@@ -22,6 +24,11 @@ namespace MyHomePage.Shared
         public MyLinks(ITRepo<DboLinks> linkRepo)
         {
             _linksRepo = linkRepo;
+        }
+
+        public void AddLink(UserLinkViewModel newLink)
+        {
+            _linksRepo.AddLinks((DboLinks)newLink.UserLink);
         }
 
         public List<DboLinks> GetAllMyLinks()

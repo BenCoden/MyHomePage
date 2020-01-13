@@ -30,6 +30,7 @@ namespace MyHomePage.Pages
 
         public void UpdateLinksUI(ChangeEventArgs args)
         {
+            var isUpdated = false;
             var newLink = args.Value as UserLinkViewModel;
             Debug.Assert(newLink != null);
 
@@ -38,11 +39,14 @@ namespace MyHomePage.Pages
                 if (oldLink.UserLink.Id == newLink.UserLink.Id)
                 {
                     if (newLink.IsTheSearchSite == true
-                        && oldLink.IsTheSearchSite == false
-                        && newLink.UserLink.CanSearchSite == true)
+                           && newLink.UserLink.CanSearchSite == true)
                     {//There can only be one search Site
                         //Set all old links to false
-                        ULinks.ForEach(item => item.IsTheSearchSite = false);
+                        ULinks.ForEach(item =>
+                        {
+                            if (item.UserLink.Id != newLink.UserLink.Id)
+                                item.IsTheSearchSite = false;
+                        });
                     }
                     if (newLink.UserLink.IsActive == false)
                     {
@@ -56,8 +60,16 @@ namespace MyHomePage.Pages
 
                     oldLink.UserLink = newLink.UserLink;
                     _myLinks.UpdateLink(newLink);
+                    isUpdated = true;
                     break;
                 }
+            }
+            if (!isUpdated)
+            {
+                newLink.UserLink.IsActive = true;
+                ULinks.Add(newLink);
+
+                _myLinks.AddLink(newLink);
             }
             ULinks = ULinks.OrderByDescending(ob => ob.UserLink.Pined).ToList();
         }

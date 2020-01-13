@@ -1,5 +1,7 @@
 ﻿using Blazor.ModalDialog;
 using Microsoft.AspNetCore.Components;
+using MyHomePage.EntityFrameworkCoreSQL.dbObjects;
+using MyHomePage.Models;
 using MyHomePage.Shared;
 using MyHomePage.Shared.ViewModel;
 using System;
@@ -21,7 +23,14 @@ namespace MyHomePage.Components.Links
 
         protected override void OnInitialized()
         {
-            UserLink = Parameters.Get<UserLinkViewModel>("Link");
+            if (Parameters.Get<UserLinkViewModel>("Link") != null)
+            {
+                UserLink = Parameters.Get<UserLinkViewModel>("Link");
+            }
+            else
+            {
+                UserLink = new UserLinkViewModel() { UserLink = new DboLinks() };
+            }
         }
 
         public async void Ok_Clicked()
