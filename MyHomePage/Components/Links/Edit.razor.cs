@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace MyHomePage.Components.Links
 {
-    public class EditBase : ComponentBase
+    public class EditBase : LinksComponentBase
     {
+        [Inject]
+        public IModalDialogService ModalDialog { get; set; }
+
         [CascadingParameter]
         public ModalDialogParameters Parameters { get; set; }
-
-        [Inject]
-        public IModalDialogService ModalDialogService { get; set; }
 
         public UserLinkViewModel UserLink { get; set; }
 
@@ -48,19 +48,19 @@ namespace MyHomePage.Components.Links
                     ModalDialogParameters resultParameters = new ModalDialogParameters();
 
                     resultParameters.Set("Link", UserLink);
-                    ModalDialogService.Close(true, resultParameters);
+                    ModalDialog.Close(true, resultParameters);
                 }
             }
             catch (Exception ex)
             {
                 // pass the exception back to the ShowDialogAsync call that opened the Dialog
-                ModalDialogService.Close(ex);
+                ModalDialog.Close(ex);
             }
         }
 
         public void Cancel_Clicked()
         {
-            ModalDialogService.Close(false);
+            ModalDialog.Close(false);
         }
     }
 }

@@ -1,0 +1,13 @@
+﻿using Blazor.ModalDialog;
+using Microsoft.AspNetCore.Components;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace MyHomePage.Components.Links
+{
+    public class LinksComponentBase : ComponentBase
+    {
+    }
+}

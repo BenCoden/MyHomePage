@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyHomePage.Components.Links
 {
-    public class LinkBase : ComponentBase
+    public class LinkBase : LinksComponentBase
     {
         [Parameter]
         public UserLinkViewModel UserLinkVM { get; set; }

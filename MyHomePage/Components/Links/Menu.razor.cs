@@ -13,7 +13,7 @@ using MyHomePage.Shared;
 
 namespace MyHomePage.Components.Links
 {
-    public class MenuBase : ComponentBase
+    public class MenuBase : LinksComponentBase
     {
         [Inject]
         public IModalDialogService ModalDialog { get; set; }

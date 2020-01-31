@@ -35,6 +35,14 @@ namespace MyHomePage.Shared
         {
             var result = new List<DboLinks>();
             result = _linksRepo.GetLinks();
+
+            foreach (var item in result)
+            {
+                var urlD = new Uri(item.Url);
+                if (string.IsNullOrWhiteSpace(item.ImageUrl))
+                    item.ImageUrl = "http://www.google.com/s2/favicons?domain=" + urlD.Host;
+            }
+
             result = result.FindAll(find => find.IsActive);
             return result;
         }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MyHomePage.Components.Links
 {
-    public class AddLinkBase : ComponentBase
+    public class AddLinkBase : LinksComponentBase
     {
         [Inject]
         public IModalDialogService ModalDialog { get; set; }
